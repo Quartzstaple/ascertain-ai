@@ -18,4 +18,4 @@ Ascertain AI transforms passive CCTV infrastructure into an active safety net. U
 
 ## 🔗 Live Demo
 
-huggingface.co/spaces/Quartzstaple/ascertain-ai/tree/Rishabh Kumar
+Quartzstaple/ascertain-ai
