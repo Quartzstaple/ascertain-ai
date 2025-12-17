@@ -17,4 +17,5 @@ Ascertain AI transforms passive CCTV infrastructure into an active safety net. U
 - **Platform:** Python, Gradio.
 
 ## 🔗 Live demo
-https://huggingface.co/spaces/Quartzstaple/ascertain-ai/tree/main
+
+https://huggingface.co/spaces/Quartzstaple/Ascentric.ai-capture
