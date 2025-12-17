@@ -1,0 +1,67 @@
+# 1. Install necessary libraries (this runs silently on the cloud)
+!pip install -q ultralytics gradio numpy
+
+import gradio as gr
+import cv2
+import numpy as np
+from ultralytics import YOLO
+
+# 2. Load the AI Model
+# Using the lightweight YOLOv8 model
+model = YOLO('yolov8n.pt') 
+
+# 3. Define the Logic (The Brain)
+def guardian_ai_demo(image):
+    if image is None:
+        return None, "System Starting..."
+
+    # Run AI detection
+    results = model(image)
+    
+    # We will look for "Cell Phone" (ID 67) to simulate a weapon for the demo
+    THREAT_CLASS_ID = 67 
+    threat_detected = False
+    status_message = "✅ STATUS: SECURE - MONITORING"
+    
+    # Draw boxes
+    for result in results:
+        boxes = result.boxes
+        for box in boxes:
+            cls = int(box.cls[0])
+            if cls == THREAT_CLASS_ID:
+                threat_detected = True
+                
+                # Get coordinates
+                x1, y1, x2, y2 = map(int, box.xyxy[0])
+                
+                # Draw Red Box on the image (Simulating Weapon)
+                cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 3)
+                cv2.putText(image, "WEAPON DETECTED", (x1, y1 - 10), 
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
+
+    if threat_detected:
+        status_message = "🚨 ALERT: WEAPON DETECTED - POLICE NOTIFIED"
+    
+    return image, status_message
+
+# 4. Create the Web Interface
+with gr.Blocks(title="Guardian AI - Investor Demo") as demo:
+    gr.Markdown("# 🛡️ Guardian AI: Smart City Surveillance")
+    gr.Markdown("### Live Investor Demo")
+    gr.Markdown("Instructions: Allow webcam access. Hold up a **Cell Phone** to simulate a weapon threat.")
+    
+    with gr.Row():
+        with gr.Column():
+            # The input is the webcam
+            input_cam = gr.Image(source="webcam", streaming=True, label="CCTV Feed")
+        with gr.Column():
+            # The output shows the boxes and status
+            output_cam = gr.Image(label="AI Analysis")
+            status_text = gr.Textbox(label="System Log")
+
+    # Connect the camera to the AI
+    input_cam.change(guardian_ai_demo, inputs=input_cam, outputs=[output_cam, status_text])
+
+# 5. Launch with a Public URL
+# share=True generates the link for the investor
+demo.queue().launch(share=True, debug=True)
