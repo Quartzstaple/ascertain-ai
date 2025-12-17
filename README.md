@@ -16,6 +16,5 @@ Ascertain AI transforms passive CCTV infrastructure into an active safety net. U
 - **Voice/Logic:** Google Gemini / GPT-4o + Twilio Programmable Voice.
 - **Platform:** Python, Gradio.
 
-## 🔗 Live Demo
-
-Quartzstaple/ascertain-ai
+## 🔗 Live demo
+https://huggingface.co/spaces/Quartzstaple/ascertain-ai/tree/main
