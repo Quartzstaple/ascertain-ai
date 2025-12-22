@@ -1,6 +1,6 @@
-# ascertain-ai
+# ascentric-ai
 Autonomous Emergency Response System using AI for real-time threat detection and automated police dispatch. Autonomous Emergency Response System using AI for real-time threat detection and automated police dispatch.
-# 🛡️ Ascertain AI
+# 🛡️ Ascentric AI
 **The World's First Autonomous Emergency Response Network**
 
 Ascertain AI transforms passive CCTV infrastructure into an active safety net. Using Computer Vision and LLMs, it detects threats (violence, weapons, traffic violations) and autonomously alerts authorities with precise situational data.
